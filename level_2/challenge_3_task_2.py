@@ -62,7 +62,6 @@ while True:
             
             # Add new person dictionary to people list
             people.append({"Name":name.title(), "Age":age, "Employed":employed_bool})
-
         case "remove":
             # Ask user who to remove, only first name allowed
             person_to_remove = get_parameter("Who do you want to remove?\n(Only type their first name) ", str, list([person["Name"].split()[0] for person in people]), True)
