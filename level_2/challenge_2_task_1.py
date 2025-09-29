@@ -24,6 +24,7 @@ def get_parameter(prompt : str, expected_type : type, valid_input_list=None):
     except LookupError:
       print(f"Invalid input. Please enter a value within:\n{"\n".join(["  "+str(i) for i in valid_input_list])}\n")
 
+#-----MAIN PROGRAM-----
 while True:
     guess_number = get_parameter(f"Enter number between {num_range}: ", int)
     
