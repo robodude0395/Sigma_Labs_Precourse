@@ -4,6 +4,7 @@ python .\main.py
 Controls:
     -Move piece side to side: Left/Right arrows
     -Move piece down: Down arrow
+    -Rotate piece: Up arrow
     -Change piece to reserve: Space key
 
 Enjoy!
