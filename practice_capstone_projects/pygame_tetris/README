@@ -1,4 +1,9 @@
 Just cd into this dir and run:
 python .\main.py
 
+Controls:
+    -Move piece side to side: Left/Right arrows
+    -Move piece down: Down arrow
+    -Change piece to reserve: Space key
+
 Enjoy!

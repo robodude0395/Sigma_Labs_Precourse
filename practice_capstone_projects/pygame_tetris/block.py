@@ -15,6 +15,12 @@ class Block:
     def move(self, rows, cols): #Move block by x rows and y columns
         self.col_pos += cols
         self.row_pos += rows
+
+    def reset_pos(self):
+        self.row_pos = 0
+        self.col_pos = 3
+
+        self.rotation_state = 0
     
     def rotate(self):
         self.rotation_state = (self.rotation_state+1)%4

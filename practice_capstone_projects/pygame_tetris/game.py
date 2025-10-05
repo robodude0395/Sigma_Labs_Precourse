@@ -9,15 +9,18 @@ class Game:
         self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()] #Reference all tetris blocks
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
+        self.reserve_block = None
         self.game_over = False
         self.score = 0
         self.rotate_sound = pygame.mixer.Sound("sounds/rotate.ogg")
+        self.rotate_sound.set_volume(0.3)
         self.clear_sound = pygame.mixer.Sound("sounds/clear.ogg")
+        self.lock_block_sound = pygame.mixer.Sound("sounds/lock_block.ogg")
         #Add a "placed block" sound
 
         #Load background music
         pygame.mixer.music.load("sounds/music_final.ogg")
-        pygame.mixer.music.set_volume(0.05)  # volume between 0.0 and 1.0. Music I got was too loud.
+        pygame.mixer.music.set_volume(0.1)  # volume between 0.0 and 1.0. Music I got was too loud.
 
         #Play background music forever
         pygame.mixer.music.play(-1)
@@ -48,13 +51,18 @@ class Game:
         self.grid.draw(screen)
         self.current_block.draw(screen, 11, 11)
         
-        #Offsets for specific blocks
-        if self.next_block.id == 3:
+        #Offsets for specific blocks in the next draw space
+        if self.next_block.id == 2:
+            self.next_block.draw(screen, 255, 250)
+        elif self.next_block.id == 3:
             self.next_block.draw(screen, 255, 290)
         elif self.next_block.id == 4:
             self.next_block.draw(screen, 255, 280)
         else:
             self.next_block.draw(screen, 270, 270)
+        
+        if self.reserve_block != None:
+            self.reserve_block.draw(screen, 255, 490)
         
 
     def move_current_block_left(self):
@@ -107,6 +115,8 @@ class Game:
         if(cleared_rows > 0):
             self.clear_sound.play()
             self.update_score(cleared_rows, 0)
+        else:
+            self.lock_block_sound.play()
 
         if self.block_fits() == False:
             #GAME OVER
@@ -125,3 +135,21 @@ class Game:
         self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()] #Reference all tetris blocks
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
+
+    def switch_to_reserve_block(self):
+        #If reserve is empty, switch current piece to next piece
+        if self.reserve_block == None:
+            self.reserve_block = self.current_block
+            self.reserve_block.reset_pos()
+            self.current_block = self.next_block
+            self.next_block = self.get_random_block()
+
+        #If reserve is not empty, switch current piece to reserve piece
+        else:
+            temp = self.current_block
+            temp.reset_pos()
+
+            self.current_block = self.reserve_block
+            self.current_block.reset_pos()
+
+            self.reserve_block = temp
