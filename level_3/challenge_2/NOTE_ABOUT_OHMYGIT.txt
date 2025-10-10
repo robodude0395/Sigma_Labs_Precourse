@@ -1,0 +1,2 @@
+The last three tasks in Oh My Git! are greyed out because they are sandbox tasks which have to objective.
+I experimented with it a bunch. It was a pretty fun game and it reinforced my git skillset much more than I expected! :)
