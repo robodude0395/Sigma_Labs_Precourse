@@ -92,7 +92,8 @@ class Game:
             self.current_block.undo_rotate()
         else:
             self.rotate_sound.play()
-
+    
+    #Check if block remains inside the grid
     def block_inside(self):
         tiles = self.current_block.get_cell_positions()
         
@@ -121,7 +122,8 @@ class Game:
         if self.block_fits() == False:
             #GAME OVER
             self.game_over = True
-
+    
+    #Check if block fits in a given place
     def block_fits(self):
         tiles = self.current_block.get_cell_positions()
         for tile in tiles:

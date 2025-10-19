@@ -6,10 +6,10 @@ from colours import Colours
 #-----DEFINITIONS-----
 pygame.init()
 
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
-CELL_SIZE = 3 
-FPS = 240 #Simulation frames per second (more frames=faster simulation)
+WINDOW_WIDTH = 500
+WINDOW_HEIGHT = 800
+CELL_SIZE = 5 
+FPS = 120 #Simulation frames per second (more frames=faster simulation)
 
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))#Create a display surface
 pygame.display.set_caption("Falling Sand")
